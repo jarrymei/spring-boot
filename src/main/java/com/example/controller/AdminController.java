@@ -38,14 +38,16 @@ public class AdminController {
     }
 
     @RequestMapping("/add")
-    public void add() {
+    public String add() {
         log.info(">>>>>>>>>>>>>>>>>>>>>>AdminController.add<<<<<<<<<<<<<<<<<<<<<<<");
         adminService.add();
+        return "添加成功";
     }
 
     @RequestMapping("/del")
-    public void del() {
+    public String del() {
         log.info(">>>>>>>>>>>>>>>>>>>>>>AdminController.del<<<<<<<<<<<<<<<<<<<<<<<");
         adminService.del();
+        return "删除成功";
     }
 }

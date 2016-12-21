@@ -51,7 +51,7 @@ public class AdminService {
     }
 
     public void add() {
-        String sql = "INSERT INTO admin VALUES (5 ,'mjj343j', '123', '2012-08-08', 2, NULL)";
+        String sql = "INSERT INTO admin VALUES (6,'mjj3343j', '123', '2012-08-08', 2, NULL)";
         jdbcTemplate.execute(sql);
     }
 
@@ -60,9 +60,4 @@ public class AdminService {
         jdbcTemplate.execute(sql);
     }
 
-    public static void main(String[] args) {
-        String sql = "select * from admin where adminId='?'";
-        String a = sql.replace("?", "1");
-        System.out.print(a);
-    }
 }
