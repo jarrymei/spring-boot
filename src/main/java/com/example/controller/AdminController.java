@@ -5,16 +5,18 @@ import com.example.service.AdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
  * Created by CPR199 on 2016-12-21.
  */
 
-@RestController
+@Controller
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -22,6 +24,7 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
 
     @RequestMapping("/list")
     public List<Admin> list() {
@@ -49,5 +52,12 @@ public class AdminController {
         log.info(">>>>>>>>>>>>>>>>>>>>>>AdminController.del<<<<<<<<<<<<<<<<<<<<<<<");
         adminService.del();
         return "删除成功";
+    }
+
+    @RequestMapping("/get/{adminId}")
+    public String get(HttpServletRequest req, @PathVariable("adminId") int adminId) {
+        adminService.get(adminId);
+        req.setAttribute("admin", adminService.get(adminId));
+        return "hello";
     }
 }
