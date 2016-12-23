@@ -2,12 +2,14 @@ package com.example.controller;
 
 import com.example.entity.Admin;
 import com.example.service.AdminService;
+import com.example.service.AdminServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
  * Created by CPR199 on 2016-12-21.
  */
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -24,12 +26,15 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private AdminServices adminServices;
 
 
     @RequestMapping("/list")
     public List<Admin> list() {
         log.info(">>>>>>>>>>>>>>>>>>>>>>AdminController.list<<<<<<<<<<<<<<<<<<<<<<<");
-        List<Admin> list = adminService.getList();
+//        List<Admin> list = adminService.getList();
+        List<Admin> list = adminServices.getAll();
         return list;
     }
 
@@ -60,4 +65,5 @@ public class AdminController {
         req.setAttribute("admin", adminService.get(adminId));
         return "hello";
     }
+
 }
